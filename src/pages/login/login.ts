@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Storage} from "@ionic/storage";
 import {ApiProvider} from "../../providers/api/api";
@@ -28,7 +28,8 @@ export class LoginPage {
               private formBuilder: FormBuilder,
               public storage: Storage,
               public api: ApiProvider,
-              public apiConstants: ApiConstantsProvider) {
+              public apiConstants: ApiConstantsProvider,
+              public alertCtrl: AlertController) {
 
 
     this.registerCredentials = this.formBuilder.group({
@@ -49,12 +50,28 @@ export class LoginPage {
         if (this.registerCredentials.value.password === response.password){
           this.storage.set(this.apiConstants.USERNAME, this.registerCredentials.value.username);
           this.navCtrl.setRoot(HomePage);
+        } else {
+          this.showError();
         }
 
       }, (error: any) => {
         console.log(error);
+        this.showError();
       });
 
+  }
+
+  showError() {
+    this.alertCtrl.create({
+      title: "Error",
+      message: "Usuario o contraseña incorrectos",
+      buttons: [
+        {
+          text: "Aceptar",
+          role: "accept"
+        }
+      ]
+    }).present();
   }
 
 
