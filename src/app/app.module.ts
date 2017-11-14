@@ -12,12 +12,14 @@ import {LoginPage} from "../pages/login/login";
 import { ApiConstantsProvider } from '../providers/api-constants/api-constants';
 import {HttpModule} from "@angular/http";
 import { ApiProvider } from '../providers/api/api';
+import {PopoverPage} from "../pages/popover/popover";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { ApiProvider } from '../providers/api/api';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,
