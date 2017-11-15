@@ -14,6 +14,8 @@ import {HttpModule} from "@angular/http";
 import { ApiProvider } from '../providers/api/api';
 import {PopoverPage} from "../pages/popover/popover";
 import {Md5} from 'ts-md5/dist/md5';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {Md5} from 'ts-md5/dist/md5';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiConstantsProvider,
     ApiProvider,
-    Md5
+    Md5,
+    Geolocation
   ]
 })
 export class AppModule {}

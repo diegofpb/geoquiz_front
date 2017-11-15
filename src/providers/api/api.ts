@@ -28,11 +28,26 @@ export class ApiProvider {
       .map(res => res.json());
   }
 
-  getMonuments(countryCode:string) {
-    return this.http.get("https://tools.wmflabs.org/heritage/api/api.php?action=search&format=json&limit=5&srcountry=" + countryCode)
-      .map(res => res.json());
+  getMonuments(continent:string, callback: (any) => void) {
+    this.http.get("https://restcountries.eu/rest/v2/region/" + continent)
+      .map(res => res.json()).subscribe((res:any) => {
+      let randomIndex = Math.floor(Math.random() * res.length);
+      let country:any = res[randomIndex];
+      this.http.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
+        +country.latlng[0]+","+country.latlng[1]+"&radius=50000&language=es&keyword=monuments in "+country.capital+"&key="+this.apiconstants.GOOGLE_API_KEY)
+        .map(res => res.json()).subscribe((res) => {
+        let filtered = res.results.filter((element) => {
+          return element.hasOwnProperty("photos");
+        });
+        if(filtered.length > 2) {
+          let sorted = filtered.sort( function() { return 0.5 - Math.random() } );
+          callback(sorted.slice(0, Math.min(sorted.length, 9)));
+        } else {
+          this.getMonuments(continent, callback);
+        }
+      });
+    });
   }
-
 
 
 }
