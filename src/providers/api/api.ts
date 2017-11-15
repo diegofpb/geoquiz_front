@@ -28,6 +28,11 @@ export class ApiProvider {
       .map(res => res.json());
   }
 
+  getMonuments(countryCode:string) {
+    return this.http.get("https://tools.wmflabs.org/heritage/api/api.php?action=search&format=json&limit=5&srcountry=" + countryCode)
+      .map(res => res.json());
+  }
+
 
 
 }

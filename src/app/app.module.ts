@@ -13,6 +13,7 @@ import { ApiConstantsProvider } from '../providers/api-constants/api-constants';
 import {HttpModule} from "@angular/http";
 import { ApiProvider } from '../providers/api/api';
 import {PopoverPage} from "../pages/popover/popover";
+import {Md5} from 'ts-md5/dist/md5';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {PopoverPage} from "../pages/popover/popover";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiConstantsProvider,
-    ApiProvider
+    ApiProvider,
+    Md5
   ]
 })
 export class AppModule {}

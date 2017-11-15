@@ -24,7 +24,7 @@ export class HomePage {
       .then((username) => {
         this.user = username;
       });
-    
+
     this.param = this.constants.CONTINENT;
     console.log(this.user);
   }
@@ -37,7 +37,6 @@ export class HomePage {
   }
 
   startGame(){
-
 
     let alert = this.alertCtrl.create({
       title: 'Seleccione',

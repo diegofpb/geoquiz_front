@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
+import {ApiProvider} from "../../providers/api/api";
+import {Md5} from 'ts-md5/dist/md5';
 
 /**
  * Generated class for the GamePage page.
@@ -16,7 +18,9 @@ import {ApiConstantsProvider} from "../../providers/api-constants/api-constants"
 })
 export class GamePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public constants: ApiConstantsProvider ) {
+  imageUrl: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public constants: ApiConstantsProvider, public api:ApiProvider, public md5:Md5) {
   }
 
   ionViewDidLoad() {
@@ -26,10 +30,19 @@ export class GamePage {
 
     console.log(continent);
 
-    let randomIndex = Math.floor(Math.random() * this.constants.COUNTRY_CODES[continent].length());
+    let randomIndex = Math.floor(Math.random() * this.constants.COUNTRY_CODES[continent].length);
     let countryCode = this.constants.COUNTRY_CODES[continent][randomIndex];
 
+    this.api.getMonuments(countryCode).subscribe((monument:any) => {
+      this.setImageSrc(monument[0].image);
+    });
+
     console.log(countryCode);
+  }
+
+  setImageSrc(image:string){
+    image = image.replace(" ", "_");
+    console.log(this.md5.appendStr(image).start());
   }
 
 }
