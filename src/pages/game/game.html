@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>game</ion-title>
+    <ion-title>{{continent}} ({{counter}} de 5): {{points}} puntos</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="this.confirmPosition()">Confirmar</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,19 +19,18 @@
 <ion-content padding>
 
   <ion-card>
-    <ion-card-header>{{continent}}</ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            <ion-slides *ngIf="images" style="max-height: 100%">
+            <ion-slides *ngIf="images">
               <ion-slide *ngFor="let item of images">
-                <img src="{{item}}" style="width: 100%!important; height: auto!important;"/>
+                <img src="{{item}}" style="width: auto; height: 100%; max-height: 600px"/>
               </ion-slide>
             </ion-slides>
           </ion-col>
           <ion-col col-6>
-            <div #map id="map"></div>
+            <div #map id="map" style="height: 600px;"></div>
           </ion-col>
         </ion-row>
       </ion-grid>

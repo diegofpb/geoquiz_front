@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {App, IonicPage, ViewController} from 'ionic-angular';
+import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
+import {Storage} from "@ionic/storage";
+
 
 /**
  * Generated class for the PopoverPage page.
@@ -13,11 +16,11 @@ import {App, IonicPage, ViewController} from 'ionic-angular';
   template: `
     <ion-list>
       <ion-list-header>Opciones de la cuenta</ion-list-header>
-      <button ion-item (click)="openPage()">
+      <button ion-item (click)="this.openPage()">
         <ion-icon item-start name="settings"></ion-icon>
         Configurar Cuenta
       </button>
-      <button ion-item (click)="closeSession()">
+      <button ion-item (click)="this.closeSession()">
         <ion-icon item-start name="log-out"></ion-icon>
         Cerrar Sesión
       </button>
@@ -27,11 +30,15 @@ import {App, IonicPage, ViewController} from 'ionic-angular';
 
 export class PopoverPage {
   constructor(private app: App,
-              public viewCtrl: ViewController) {
+              public viewCtrl: ViewController,
+              public storage: Storage,
+              public constants: ApiConstantsProvider
+  ) {
 
   }
 
   closeSession() {
+    this.storage.remove(this.constants.USERNAME);
     this.close();
     this.app.getRootNav().setRoot('LoginPage');
   }
