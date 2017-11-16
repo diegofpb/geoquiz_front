@@ -12,31 +12,40 @@ import {LoginPage} from "../pages/login/login";
 import { ApiConstantsProvider } from '../providers/api-constants/api-constants';
 import {HttpModule} from "@angular/http";
 import { ApiProvider } from '../providers/api/api';
+import {PopoverPage} from "../pages/popover/popover";
+import {Md5} from 'ts-md5/dist/md5';
+import { Geolocation } from '@ionic-native/geolocation';
+import {LoginPageModule} from "../pages/login/login.module";
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    PopoverPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiConstantsProvider,
-    ApiProvider
+    ApiProvider,
+    Md5,
+    Geolocation
   ]
 })
 export class AppModule {}

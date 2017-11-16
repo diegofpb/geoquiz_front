@@ -48,7 +48,7 @@ export class LoginPage {
       .subscribe((response: any) => {
 
         if (this.registerCredentials.value.password === response.password){
-          this.storage.set(this.apiConstants.USERNAME, this.registerCredentials.value.username);
+          this.storage.set(this.apiConstants.USERNAME, response.username);
           this.navCtrl.setRoot(HomePage);
         } else {
           this.showError();

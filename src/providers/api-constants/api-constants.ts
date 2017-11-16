@@ -16,6 +16,16 @@ export class ApiConstantsProvider {
   }
 
   USERNAME:string = "username";
+  CONTINENT:string = "continent";
   URL_BASE_API:string = "http://localhost:8000";
+  GOOGLE_API_KEY:string = "AIzaSyA5xov4mJbIoHmgd2spPc7DbB-2b4x9xF4";//"AIzaSyAoK6KYK1s-kMy5qnDm5qssVPdji6q36Ik";
+
+  COUNTRY_CODES:object = {
+    "Europa":"Europe",
+    "Asia":"Asia",
+    "América":"Americas",
+    "África":"Africa",
+    "Oceanía":"Oceania"
+  }
 
 }

@@ -1,14 +1,18 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="geoquiz-nav">
+    <ion-title>¡Bienvenido {{user}}!</ion-title>
+    <ion-buttons end>
+      <button ion-button class="btn-exit-color" (click)="this.presentPopover($event)">Opciones</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding class="bg_color">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 text-center>
+          <button ion-button large class="bttw100" (click)="this.startGame()">Jugar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
