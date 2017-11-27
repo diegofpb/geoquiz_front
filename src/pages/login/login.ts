@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Storage} from "@ionic/storage";
@@ -47,9 +47,12 @@ export class LoginPage {
     this.api.getUser(this.registerCredentials.value.username)
       .subscribe((response: any) => {
 
-        if (this.registerCredentials.value.password === response.password){
-          this.storage.set(this.apiConstants.USERNAME, response.username);
-          this.navCtrl.setRoot(HomePage);
+        if (this.registerCredentials.value.password === response.password) {
+          this.storage.set(this.apiConstants.USERNAME, response.username)
+            .then((data) => {
+              console.log(data);
+              this.navCtrl.setRoot(HomePage);
+            });
         } else {
           this.showError();
         }
