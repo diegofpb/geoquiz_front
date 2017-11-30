@@ -22,7 +22,7 @@ import {LoginPageModule} from "../pages/login/login.module";
   declarations: [
     MyApp,
     HomePage,
-    PopoverPage
+    PopoverPage,
   ],
   imports: [
     BrowserModule,

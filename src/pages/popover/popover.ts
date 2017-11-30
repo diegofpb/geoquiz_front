@@ -45,6 +45,8 @@ export class PopoverPage {
 
   openPage(){
     this.close();
+    this.app.getRootNav().setRoot('ProfilePage');
+
   }
 
   close() {
