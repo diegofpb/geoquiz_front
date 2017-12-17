@@ -33,6 +33,7 @@ export class GamePage {
   continent: string;
   timer: number;
   interval: number;
+  segText: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public constants: ApiConstantsProvider, public api:ApiProvider, public md5:Md5, public alertCtrl: AlertController, public storage: Storage) {
   }
@@ -49,6 +50,7 @@ export class GamePage {
   loadMonuments(){
 
     this.timer = 30;
+    this.segText = "segundos";
     this.interval = setInterval(() => this.timerHandler(), 1000);
 
     let innerContinent:string = this.constants.COUNTRY_CODES[this.continent];
@@ -63,11 +65,16 @@ export class GamePage {
   }
 
   timerHandler() {
-    if(this.timer > 0)
+    if(this.timer > 0) {
       this.timer -= 1;
-    else {
+    } else {
       clearInterval(this.interval);
       this.abortGame();
+    }
+    if(this.timer == 1) {
+      this.segText = "segundo";
+    } else {
+      this.segText = "segundos";
     }
   }
 
