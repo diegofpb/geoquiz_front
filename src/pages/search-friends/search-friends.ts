@@ -37,11 +37,7 @@ export class SearchFriendsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchFriendsPage');
     this.getUsers();
-  }
-
-  public sortByCountry() {
-    this.users
-
+    this.getUsersOrderByCountry();
   }
 
   public addFriend(userToAdd: String) {
@@ -85,6 +81,20 @@ export class SearchFriendsPage {
     this.api.getUsers()
       .subscribe((response: any) => {
         this.users = response;
+
+
+      }, (error: any) => {
+        console.log(error);
+
+      });
+
+  }
+
+  public getUsersOrderByCountry() {
+
+    this.api.getUsersOrderByCountry()
+      .subscribe((response: any) => {
+        this.usersByCountry = response;
 
 
       }, (error: any) => {

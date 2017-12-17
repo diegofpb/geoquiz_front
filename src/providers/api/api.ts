@@ -31,6 +31,11 @@ export class ApiProvider {
       .map(res => res.json());
   }
 
+  getUsersOrderByCountry() {
+    return this.http.get(this.apiconstants.URL_BASE_API + "/users/orderByCountry")
+      .map(res => res.json());
+  }
+
   getUser(username: String) {
     return this.http.get(this.apiconstants.URL_BASE_API + "/users/" + username)
       .map(res => res.json());
