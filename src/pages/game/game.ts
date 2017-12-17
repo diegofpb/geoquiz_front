@@ -31,6 +31,8 @@ export class GamePage {
   marker: any;
   images: string[];
   continent: string;
+  timer: number;
+  interval: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public constants: ApiConstantsProvider, public api:ApiProvider, public md5:Md5, public alertCtrl: AlertController, public storage: Storage) {
   }
@@ -45,6 +47,10 @@ export class GamePage {
   }
 
   loadMonuments(){
+
+    this.timer = 30;
+    this.interval = setInterval(() => this.timerHandler(), 1000);
+
     let innerContinent:string = this.constants.COUNTRY_CODES[this.continent];
     this.api.getMonuments(innerContinent, (latlng, monuments) => {
       console.log(monuments);
@@ -54,6 +60,15 @@ export class GamePage {
       });
 
     });
+  }
+
+  timerHandler() {
+    if(this.timer > 0)
+      this.timer -= 1;
+    else {
+      clearInterval(this.interval);
+      this.finishGame();
+    }
   }
 
   loadMap(){
@@ -89,6 +104,8 @@ export class GamePage {
 
     this.counter++;
     this.points += GamePage.getDistance(this.capitalLatlng.lat, this.capitalLatlng.lng, this.marker.position.lat(), this.marker.position.lng());
+
+    clearInterval(this.interval);
 
     if(this.counter > 5){
       this.finishGame();
