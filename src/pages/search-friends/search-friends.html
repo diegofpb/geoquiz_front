@@ -43,10 +43,10 @@
 
 
             <ion-list *ngSwitchCase="'filterByCountry'">
-              <ion-item *ngFor="let user of users">
-                <h2>{{user.username}} ({{user.country}})</h2>
-                <p>{{user.email}}</p>
-                <button id="{{user.username}}" ion-button outline item-end (click)="addFriend(user.username)">Añadir como amigo</button>
+              <ion-item *ngFor="let userByCountry of usersByCountry">
+                <h2>{{userByCountry.username}} ({{userByCountry.country}})</h2>
+                <p>{{userByCountry.email}}</p>
+                <button id="{{userByCountry.username}}" ion-button outline item-end (click)="addFriend(userByCountry.username)">Añadir como amigo</button>
               </ion-item>
             </ion-list>
 
