@@ -36,6 +36,24 @@ export class ApiProvider {
       .map(res => res.json());
   }
 
+  putUser(user: any) {
+
+    let body = JSON.stringify({
+      username: user.value.username,
+      password: user.value.password,
+      country: user.value.country,
+      email: user.value.email,
+      validated: user.value.validated
+    });
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(this.apiconstants.URL_BASE_API + "/users",
+      body, {headers: headers});
+
+  }
+
   postUser(user: any) {
 
     let body = JSON.stringify({
