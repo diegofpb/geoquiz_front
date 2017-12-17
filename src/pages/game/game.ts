@@ -67,8 +67,24 @@ export class GamePage {
       this.timer -= 1;
     else {
       clearInterval(this.interval);
-      this.finishGame();
+      this.abortGame();
     }
+  }
+
+  abortGame() {
+    this.alertCtrl.create({
+      title: "¡Se ha acabado el tiempo!",
+      message: "No se guardará esta partida",
+      buttons: [
+        {
+          text: "Aceptar",
+          role: "accept",
+          handler: () => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    }).present();
   }
 
   loadMap(){
