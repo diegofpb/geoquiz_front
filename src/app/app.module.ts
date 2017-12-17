@@ -36,7 +36,7 @@ import {LoginPageModule} from "../pages/login/login.module";
     MyApp,
     HomePage,
     LoginPage,
-    PopoverPage
+    PopoverPage,
   ],
   providers: [
     StatusBar,

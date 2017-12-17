@@ -1,0 +1,58 @@
+<!--
+  Generated template for the SearchFriendsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="geoquiz-nav">
+    <ion-title>Búsqueda de usuarios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg_color">
+
+    <ion-row>
+      <ion-col offset-1 col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 align-self-center align-items-center="" text-center="">
+        <ion-card>
+
+          <div padding>
+            <ion-segment [(ngModel)]="usersFilter">
+              <ion-segment-button value="filterByUsername">
+                Por nombre de usuario
+              </ion-segment-button>
+              <ion-segment-button value="filterByCountry">
+                Por país
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+
+
+          <div [ngSwitch]="usersFilter">
+
+            <ion-list *ngSwitchCase="'filterByUsername'">
+              <ion-item *ngFor="let user of users">
+                <h2>{{user.username}} ({{user.country}})</h2>
+                <p>{{user.email}}</p>
+                <button id="{{user.username}}" ion-button outline item-end (click)="addFriend(user.username)">Añadir como amigo</button>
+              </ion-item>
+            </ion-list>
+
+
+            <ion-list *ngSwitchCase="'filterByCountry'">
+              <ion-item *ngFor="let user of users">
+                <h2>{{user.username}} ({{user.country}})</h2>
+                <p>{{user.email}}</p>
+                <button id="{{user.username}}" ion-button outline item-end (click)="addFriend(user.username)">Añadir como amigo</button>
+              </ion-item>
+            </ion-list>
+
+          </div>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-content>

@@ -67,4 +67,8 @@ export class HomePage {
     alert.present();
   }
 
+  searchFriends(){
+    this.navCtrl.push('SearchFriendsPage');
+  }
+
 }
