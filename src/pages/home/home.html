@@ -2,6 +2,10 @@
   <ion-navbar color="geoquiz-nav">
     <ion-title>¡Bienvenido {{user}}!</ion-title>
     <ion-buttons end>
+      <button ion-button icon-only (click)="showNotifications()">
+        <ion-badge *ngIf="notificationNumber !== 0" color="danger">{{ notificationNumber }}</ion-badge>
+        <ion-icon name="md-contacts"></ion-icon>
+      </button>
       <button ion-button class="btn-exit-color" (click)="this.presentPopover($event)">Opciones</button>
     </ion-buttons>
   </ion-navbar>
@@ -15,11 +19,8 @@
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
-      <ion-col col-6 col-sm-5 col-md-4 col-lg-4 col-xl-4 text-center>
+      <ion-col col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 text-center>
         <button ion-button large class="bttw100" color="secondary" (click)="this.searchFriends()">Buscar amigos</button>
-      </ion-col>
-      <ion-col col-6 col-sm-5 col-md-4 col-lg-4 col-xl-4 text-center>
-        <button ion-button large class="bttw100" color="terciary">Ver ranking</button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -16,6 +16,7 @@ import {PopoverPage} from "../pages/popover/popover";
 import {Md5} from 'ts-md5/dist/md5';
 import { Geolocation } from '@ionic-native/geolocation';
 import {LoginPageModule} from "../pages/login/login.module";
+import {NotificationsPage} from "../pages/notifications/notifications";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {LoginPageModule} from "../pages/login/login.module";
     MyApp,
     HomePage,
     PopoverPage,
+    NotificationsPage
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import {LoginPageModule} from "../pages/login/login.module";
     HomePage,
     LoginPage,
     PopoverPage,
+    NotificationsPage
   ],
   providers: [
     StatusBar,

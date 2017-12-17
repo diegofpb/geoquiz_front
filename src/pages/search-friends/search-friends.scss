@@ -4,5 +4,10 @@ page-search-friends {
     background-color: #f4f4f4;
   }
 
+  .bar-button-default-md:hover:not(.disable-hover),
+  .bar-button-clear-md-default:hover:not(.disable-hover),
+  .bar-button-md-default:hover:not(.disable-hover) {
+    color: #fffde7;
+  }
 
 }
