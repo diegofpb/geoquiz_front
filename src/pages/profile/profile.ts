@@ -4,7 +4,6 @@ import {ApiProvider} from "../../providers/api/api";
 import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
 import {Storage} from "@ionic/storage";
 import {FormBuilder, Validators} from "@angular/forms";
-import {HomePage} from "../home/home";
 
 
 /**
@@ -27,7 +26,6 @@ export class ProfilePage {
   private register: boolean = false;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               public api: ApiProvider,
               public constants: ApiConstantsProvider,
               public storage: Storage,
@@ -54,10 +52,6 @@ export class ProfilePage {
         this.username = username;
         this.register = username == null;
       });
-  }
-
-  getPreviousPage(){
-    this.navCtrl.pop();
   }
 
   getUserData(username: string) {
