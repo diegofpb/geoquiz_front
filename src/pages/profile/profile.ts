@@ -24,6 +24,7 @@ export class ProfilePage {
   myAccount: any;
   loading: any;
   username: any;
+  private register: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -51,11 +52,12 @@ export class ProfilePage {
       .then((username) => {
         this.getUserData(username);
         this.username = username;
+        this.register = username == null;
       });
   }
 
   getPreviousPage(){
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.pop();
   }
 
   getUserData(username: string) {
@@ -72,43 +74,57 @@ export class ProfilePage {
     this.myAccount.controls['country'].setValue(data.country);
     this.myAccount.controls['email'].setValue(data.email);
     this.myAccount.controls['validated'].setValue(data.validated);
-
   }
 
   setUserData() {
 
     this.presentLoadingCustom();
-    this.api.postUser(this.myAccount)
-      .subscribe((response: any) => {
-        console.log(response);
-        this.loading.dismiss();
 
-        this.storage.set(this.constants.USERNAME, this.myAccount.value.username)
-          .then((data) => {
+    if(this.register){
+      this.api.postUser(this.myAccount)
+        .subscribe((response: any) => {
+          console.log(response);
+          this.loading.dismiss();
 
-            let alert = this.alertCtrl.create({
-              title: 'Operación completada',
-              subTitle: 'Se ha modificado su perfil correctamente.',
-              buttons: ['Aceptar']
-            });
-
-            alert.present();
-
+          let alert = this.alertCtrl.create({
+            title: 'Operación completada',
+            subTitle: 'Se ha registrado correctamente.',
+            buttons: [{
+              text: 'Aceptar',
+              handler: (role: any) => {
+                this.navCtrl.push('LoginPage');
+              }
+            }]
           });
 
-      }, (error: any) => {
-        console.log(error);
-        this.loading.dismiss();
+          alert.present();
 
-        let alert = this.alertCtrl.create({
-          title: 'Operación fallida',
-          subTitle: 'Hubo un error al modificar su perfil..',
-          buttons: ['Aceptar']
+        }, (error: any) => {
+          this.logError(error);
         });
+    } else {
+      this.api.putUser(this.myAccount)
+        .subscribe((response: any) => {
+          console.log(response);
+          this.loading.dismiss();
 
-        alert.present();
+          this.storage.set(this.constants.USERNAME, this.myAccount.value.username)
+            .then((data) => {
 
-      });
+              let alert = this.alertCtrl.create({
+                title: 'Operación completada',
+                subTitle: 'Se ha modificado su perfil correctamente.',
+                buttons: ['Aceptar']
+              });
+
+              alert.present();
+
+            });
+
+        }, (error: any) => {
+          this.logError(error)
+        });
+    }
   }
 
   private presentLoadingCustom() {
@@ -118,4 +134,16 @@ export class ProfilePage {
     this.loading.present();
   }
 
+  private logError(error: any) {
+    console.log(error);
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: 'Operación fallida',
+      subTitle: 'Hubo un error.',
+      buttons: ['Aceptar']
+    });
+
+    alert.present();
+  }
 }
