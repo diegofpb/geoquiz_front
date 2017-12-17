@@ -24,7 +24,7 @@ export class ProfilePage {
   myAccount: any;
   loading: any;
   username: any;
-  private register: boolean;
+  private register: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -52,17 +52,17 @@ export class ProfilePage {
       .then((username) => {
         this.getUserData(username);
         this.username = username;
+        this.register = username == null;
       });
   }
 
   getPreviousPage(){
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.pop();
   }
 
   getUserData(username: string) {
     this.api.getUser(username).subscribe((response: any) => {
       this.setDataToForm(response);
-      this.register = response.username != null;
     }, (error: any) => {
       console.log(error);
     });
@@ -89,7 +89,12 @@ export class ProfilePage {
           let alert = this.alertCtrl.create({
             title: 'Operación completada',
             subTitle: 'Se ha registrado correctamente.',
-            buttons: ['Aceptar']
+            buttons: [{
+              text: 'Aceptar',
+              handler: (role: any) => {
+                this.navCtrl.push('LoginPage');
+              }
+            }]
           });
 
           alert.present();

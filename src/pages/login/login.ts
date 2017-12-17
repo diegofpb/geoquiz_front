@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Storage} from "@ionic/storage";
 import {ApiProvider} from "../../providers/api/api";
@@ -24,6 +24,7 @@ export class LoginPage {
 
 
   constructor(public navCtrl: NavController,
+              public app: App,
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               public storage: Storage,
@@ -77,5 +78,8 @@ export class LoginPage {
     }).present();
   }
 
+  register() {
+    this.app.getRootNav().push('ProfilePage');
+  }
 
 }
