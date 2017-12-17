@@ -18,6 +18,14 @@ export class ApiProvider {
 
   }
 
+  addFriend(user1:any,user2:any) {
+    let body = JSON.stringify({ "username1": user1, "username2": user2 });
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.apiconstants.URL_BASE_API + "/friendships/", body, {headers: headers});
+  }
+
   getUsers() {
     return this.http.get(this.apiconstants.URL_BASE_API + "/users")
       .map(res => res.json());
