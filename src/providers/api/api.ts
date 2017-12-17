@@ -26,6 +26,17 @@ export class ApiProvider {
     return this.http.post(this.apiconstants.URL_BASE_API + "/friendships/", body, {headers: headers});
   }
 
+  getPendingFriends(user1:any){
+    return this.http.get(this.apiconstants.URL_BASE_API + "/friendships/getPendingFriendships?username="+user1)
+      .map(res => res.json());
+  }
+
+  acceptFriendship(username1: any,username2:any) {
+    return this.http.put(this.apiconstants.URL_BASE_API +
+      "/friendships?username1="+username1+"&username2="+username2,
+      null);
+  }
+
   getUsers() {
     return this.http.get(this.apiconstants.URL_BASE_API + "/users")
       .map(res => res.json());

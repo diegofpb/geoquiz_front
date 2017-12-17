@@ -1,0 +1,52 @@
+<!--
+  Generated template for the NotificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="geoquiz-nav">
+    <ion-title>Peticiones de amistad ({{notificationNumber}})</ion-title>
+    <ion-buttons end>
+      <button ion-button class="btn-exit-color" (click)="dismissModal()">Cerrar</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+
+  <!-- No wearables -->
+  <ion-grid *ngIf="notificationNumber == 0" fixed text-center class="no-wearables">
+    <ion-row>
+      <ion-col>
+        <ion-icon class="person" name="person" color="blue-grey"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1 ion-text color="blue-grey">No tienes ninguna petición de amistad.</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p ion-text color="blue-grey">¡Quizá nadie te quiera! Prueba suerte en otro momento.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-list>
+    <ion-item *ngFor="let notification of notifications">
+      <h2>{{notification.user1.username}} ({{notification.user1.country}})</h2>
+      <p>{{notification.user1.email}}</p>
+      <button id="{{notification.user1.username}}"
+              ion-button outline item-end
+              (click)="acceptFriendship(notification.user1.username)">Aceptar amistad
+      </button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
