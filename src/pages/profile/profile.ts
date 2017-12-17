@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
 import {ApiProvider} from "../../providers/api/api";
 import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
 import {Storage} from "@ionic/storage";
