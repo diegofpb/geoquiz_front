@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
-import {Storage} from "@ionic/storage";
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
-import {ApiProvider} from "../../providers/api/api";
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Storage } from "@ionic/storage";
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
+import { ApiProvider } from "../../providers/api/api";
 
 /**
  * Generated class for the NotificationsPage page.
@@ -19,16 +19,15 @@ import {ApiProvider} from "../../providers/api/api";
 export class NotificationsPage {
 
   notificationNumber: any;
-  notifications:any;
-  username:any;
+  notifications: any;
+  username: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
               public constants: ApiConstantsProvider,
               public api: ApiProvider,
-              public viewCtrl: ViewController,
-  ) {
+              public viewCtrl: ViewController,) {
 
     this.storage.get(this.constants.USERNAME)
       .then((username) => {
@@ -54,9 +53,9 @@ export class NotificationsPage {
       });
   }
 
-  public acceptFriendship(user:any){
+  public acceptFriendship(user: any) {
 
-    this.api.acceptFriendship(user,this.username)
+    this.api.acceptFriendship(user, this.username)
       .subscribe((response: any) => {
         this.getNotifications(this.username);
       }, (error: any) => {

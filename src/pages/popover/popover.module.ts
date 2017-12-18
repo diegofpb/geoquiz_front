@@ -10,4 +10,5 @@ import { PopoverPage } from './popover';
     IonicPageModule.forChild(PopoverPage),
   ],
 })
-export class PopoverPageModule {}
+export class PopoverPageModule {
+}

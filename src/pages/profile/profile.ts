@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController} from 'ionic-angular';
-import {ApiProvider} from "../../providers/api/api";
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
-import {Storage} from "@ionic/storage";
-import {FormBuilder, Validators} from "@angular/forms";
+import { Component } from '@angular/core';
+import { AlertController, IonicPage, LoadingController, NavController } from 'ionic-angular';
+import { ApiProvider } from "../../providers/api/api";
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
+import { Storage } from "@ionic/storage";
+import { FormBuilder, Validators } from "@angular/forms";
 
 
 /**
@@ -34,11 +34,11 @@ export class ProfilePage {
               public loadingCtrl: LoadingController,) {
 
     this.myAccount = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      country: ['', Validators.required],
-      email: ['', Validators.required],
-      validated: ['', Validators.required]
+      username: [ '', Validators.required ],
+      password: [ '', Validators.required ],
+      country: [ '', Validators.required ],
+      email: [ '', Validators.required ],
+      validated: [ '', Validators.required ]
     })
 
 
@@ -63,18 +63,18 @@ export class ProfilePage {
   }
 
   setDataToForm(data: any) {
-    this.myAccount.controls['username'].setValue(data.username);
-    this.myAccount.controls['password'].setValue(data.password);
-    this.myAccount.controls['country'].setValue(data.country);
-    this.myAccount.controls['email'].setValue(data.email);
-    this.myAccount.controls['validated'].setValue(data.validated);
+    this.myAccount.controls[ 'username' ].setValue(data.username);
+    this.myAccount.controls[ 'password' ].setValue(data.password);
+    this.myAccount.controls[ 'country' ].setValue(data.country);
+    this.myAccount.controls[ 'email' ].setValue(data.email);
+    this.myAccount.controls[ 'validated' ].setValue(data.validated);
   }
 
   setUserData() {
 
     this.presentLoadingCustom();
 
-    if(this.register){
+    if (this.register) {
       this.api.postUser(this.myAccount)
         .subscribe((response: any) => {
           console.log(response);
@@ -83,12 +83,12 @@ export class ProfilePage {
           let alert = this.alertCtrl.create({
             title: 'Operación completada',
             subTitle: 'Se ha registrado correctamente.',
-            buttons: [{
+            buttons: [ {
               text: 'Aceptar',
               handler: (role: any) => {
                 this.navCtrl.push('LoginPage');
               }
-            }]
+            } ]
           });
 
           alert.present();
@@ -108,7 +108,7 @@ export class ProfilePage {
               let alert = this.alertCtrl.create({
                 title: 'Operación completada',
                 subTitle: 'Se ha modificado su perfil correctamente.',
-                buttons: ['Aceptar']
+                buttons: [ 'Aceptar' ]
               });
 
               alert.present();
@@ -135,7 +135,7 @@ export class ProfilePage {
     let alert = this.alertCtrl.create({
       title: 'Operación fallida',
       subTitle: 'Hubo un error.',
-      buttons: ['Aceptar']
+      buttons: [ 'Aceptar' ]
     });
 
     alert.present();

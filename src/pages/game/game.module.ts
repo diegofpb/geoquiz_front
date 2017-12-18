@@ -10,4 +10,5 @@ import { GamePage } from './game';
     IonicPageModule.forChild(GamePage),
   ],
 })
-export class GamePageModule {}
+export class GamePageModule {
+}

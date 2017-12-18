@@ -25,7 +25,8 @@
             <form id="userData" [formGroup]="myAccount" (ngSubmit)="setUserData()">
               <ion-item>
                 <ion-label color="primary" stacked>Username</ion-label>
-                <ion-input formControlName="username" type="text" placeholder="Username" [readonly]="this.register ? null : 'true'"></ion-input>
+                <ion-input formControlName="username" type="text" placeholder="Username"
+                           [readonly]="this.register ? null : 'true'"></ion-input>
               </ion-item>
 
               <ion-item>
@@ -40,7 +41,8 @@
 
               <ion-item>
                 <ion-label color="primary" stacked>Correo electrónico</ion-label>
-                <ion-input formControlName="email" type="email" placeholder="Correo electrónico" [readonly]="this.register ? null : 'true'"></ion-input>
+                <ion-input formControlName="email" type="email" placeholder="Correo electrónico"
+                           [readonly]="this.register ? null : 'true'"></ion-input>
               </ion-item>
 
               <ion-item>

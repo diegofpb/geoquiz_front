@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {AlertController, ModalController, NavController, PopoverController} from 'ionic-angular';
-import {PopoverPage} from "../popover/popover";
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
-import {Storage} from "@ionic/storage";
-import {ApiProvider} from "../../providers/api/api";
-import {NotificationsPage} from "../notifications/notifications";
+import { Component } from '@angular/core';
+import { AlertController, ModalController, NavController, PopoverController } from 'ionic-angular';
+import { PopoverPage } from "../popover/popover";
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
+import { Storage } from "@ionic/storage";
+import { ApiProvider } from "../../providers/api/api";
+import { NotificationsPage } from "../notifications/notifications";
 
 
 @Component({
@@ -71,7 +71,7 @@ export class HomePage {
           checked: false
         };
       }),
-      buttons: [{
+      buttons: [ {
         text: 'Cancelar',
         role: 'cancel'
       }, {
@@ -85,7 +85,7 @@ export class HomePage {
             continent: role
           })
         }
-      }]
+      } ]
     });
     alert.present();
   }

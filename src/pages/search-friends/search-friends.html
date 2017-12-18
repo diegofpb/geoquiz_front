@@ -15,44 +15,49 @@
 
 <ion-content padding class="bg_color">
 
-    <ion-row>
-      <ion-col offset-1 col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 align-self-center align-items-center="" text-center="">
-        <ion-card>
+  <ion-row>
+    <ion-col offset-1 col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 align-self-center align-items-center=""
+             text-center="">
+      <ion-card>
 
-          <div padding>
-            <ion-segment [(ngModel)]="usersFilter">
-              <ion-segment-button value="filterByUsername">
-                Por nombre de usuario
-              </ion-segment-button>
-              <ion-segment-button value="filterByCountry">
-                Por país
-              </ion-segment-button>
-            </ion-segment>
-          </div>
-
-
-          <div [ngSwitch]="usersFilter">
-
-            <ion-list *ngSwitchCase="'filterByUsername'">
-              <ion-item *ngFor="let user of users">
-                <h2>{{user.username}} ({{user.country}})</h2>
-                <p>{{user.email}}</p>
-                <button id="{{user.username}}" ion-button outline item-end (click)="addFriend(user.username)">Añadir como amigo</button>
-              </ion-item>
-            </ion-list>
+        <div padding>
+          <ion-segment [(ngModel)]="usersFilter">
+            <ion-segment-button value="filterByUsername">
+              Por nombre de usuario
+            </ion-segment-button>
+            <ion-segment-button value="filterByCountry">
+              Por país
+            </ion-segment-button>
+          </ion-segment>
+        </div>
 
 
-            <ion-list *ngSwitchCase="'filterByCountry'">
-              <ion-item *ngFor="let userByCountry of usersByCountry">
-                <h2>{{userByCountry.username}} ({{userByCountry.country}})</h2>
-                <p>{{userByCountry.email}}</p>
-                <button id="{{userByCountry.username}}" ion-button outline item-end (click)="addFriend(userByCountry.username)">Añadir como amigo</button>
-              </ion-item>
-            </ion-list>
+        <div [ngSwitch]="usersFilter">
 
-          </div>
+          <ion-list *ngSwitchCase="'filterByUsername'">
+            <ion-item *ngFor="let user of users">
+              <h2>{{user.username}} ({{user.country}})</h2>
+              <p>{{user.email}}</p>
+              <button id="{{user.username}}" ion-button outline item-end (click)="addFriend(user.username)">Añadir como
+                amigo
+              </button>
+            </ion-item>
+          </ion-list>
 
-        </ion-card>
-      </ion-col>
-    </ion-row>
+
+          <ion-list *ngSwitchCase="'filterByCountry'">
+            <ion-item *ngFor="let userByCountry of usersByCountry">
+              <h2>{{userByCountry.username}} ({{userByCountry.country}})</h2>
+              <p>{{userByCountry.email}}</p>
+              <button id="{{userByCountry.username}}" ion-button outline item-end
+                      (click)="addFriend(userByCountry.username)">Añadir como amigo
+              </button>
+            </ion-item>
+          </ion-list>
+
+        </div>
+
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

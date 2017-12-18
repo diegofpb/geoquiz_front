@@ -1,9 +1,10 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
-import {ApiProvider} from "../../providers/api/api";
-import {Md5} from 'ts-md5/dist/md5';
-import {Storage} from "@ionic/storage";
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
+import { ApiProvider } from "../../providers/api/api";
+import { Md5 } from 'ts-md5/dist/md5';
+import { Storage } from "@ionic/storage";
+
 declare var google;
 
 /**
@@ -35,7 +36,7 @@ export class GamePage {
   interval: number;
   segText: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public constants: ApiConstantsProvider, public api:ApiProvider, public md5:Md5, public alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public constants: ApiConstantsProvider, public api: ApiProvider, public md5: Md5, public alertCtrl: AlertController, public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -47,31 +48,31 @@ export class GamePage {
     this.loadMonuments();
   }
 
-  loadMonuments(){
+  loadMonuments() {
 
     this.timer = 30;
     this.segText = "segundos";
     this.interval = setInterval(() => this.timerHandler(), 1000);
 
-    let innerContinent:string = this.constants.COUNTRY_CODES[this.continent];
+    let innerContinent: string = this.constants.COUNTRY_CODES[ this.continent ];
     this.api.getMonuments(innerContinent, (latlng, monuments) => {
       console.log(monuments);
       this.capitalLatlng = latlng;
       this.images = monuments.map(monument => {
-        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1080&photoreference="+monument.photos[0].photo_reference+"&key="+this.constants.GOOGLE_API_KEY
+        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1080&photoreference=" + monument.photos[ 0 ].photo_reference + "&key=" + this.constants.GOOGLE_API_KEY
       });
 
     });
   }
 
   timerHandler() {
-    if(this.timer > 0) {
+    if (this.timer > 0) {
       this.timer -= 1;
     } else {
       clearInterval(this.interval);
       this.abortGame();
     }
-    if(this.timer == 1) {
+    if (this.timer == 1) {
       this.segText = "segundo";
     } else {
       this.segText = "segundos";
@@ -94,7 +95,7 @@ export class GamePage {
     }).present();
   }
 
-  loadMap(){
+  loadMap() {
     let latLng = new google.maps.LatLng(0, 0);
 
     let mapOptions = {
@@ -120,9 +121,9 @@ export class GamePage {
     }
   }
 
-  confirmPosition(){
+  confirmPosition() {
 
-    if(!this.marker || !this.images)
+    if (!this.marker || !this.images)
       return;
 
     this.counter++;
@@ -130,7 +131,7 @@ export class GamePage {
 
     clearInterval(this.interval);
 
-    if(this.counter > 5){
+    if (this.counter > 5) {
       this.finishGame();
     } else {
       this.loadMonuments();
@@ -169,20 +170,20 @@ export class GamePage {
 
   static getDistance(lat1, lon1, lat2, lon2) {
     let R = 6371; // Radius of the earth in km
-    let dLat = GamePage.deg2rad(lat2-lat1);  // deg2rad below
-    let dLon = GamePage.deg2rad(lon2-lon1);
+    let dLat = GamePage.deg2rad(lat2 - lat1);  // deg2rad below
+    let dLon = GamePage.deg2rad(lon2 - lon1);
     let a =
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(GamePage.deg2rad(lat1)) * Math.cos(GamePage.deg2rad(lat2)) *
-      Math.sin(dLon/2) * Math.sin(dLon/2)
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
     ;
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let d = R * c; // Distance in km
     return Math.round(d);
   }
 
   static deg2rad(deg) {
-    return deg * (Math.PI/180)
+    return deg * (Math.PI / 180)
   }
 
 }

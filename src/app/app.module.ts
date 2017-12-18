@@ -8,15 +8,15 @@ import { IonicStorageModule } from "@ionic/storage"
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {LoginPage} from "../pages/login/login";
+import { LoginPage } from "../pages/login/login";
 import { ApiConstantsProvider } from '../providers/api-constants/api-constants';
-import {HttpModule} from "@angular/http";
+import { HttpModule } from "@angular/http";
 import { ApiProvider } from '../providers/api/api';
-import {PopoverPage} from "../pages/popover/popover";
-import {Md5} from 'ts-md5/dist/md5';
+import { PopoverPage } from "../pages/popover/popover";
+import { Md5 } from 'ts-md5/dist/md5';
 import { Geolocation } from '@ionic-native/geolocation';
-import {LoginPageModule} from "../pages/login/login.module";
-import {NotificationsPage} from "../pages/notifications/notifications";
+import { LoginPageModule } from "../pages/login/login.module";
+import { NotificationsPage } from "../pages/notifications/notifications";
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import {NotificationsPage} from "../pages/notifications/notifications";
     IonicStorageModule.forRoot(),
     LoginPageModule
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [ IonicApp ],
   entryComponents: [
     MyApp,
     HomePage,
@@ -44,11 +44,12 @@ import {NotificationsPage} from "../pages/notifications/notifications";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiConstantsProvider,
     ApiProvider,
     Md5,
     Geolocation
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

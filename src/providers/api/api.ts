@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {ApiConstantsProvider} from "../api-constants/api-constants";
+import { ApiConstantsProvider } from "../api-constants/api-constants";
 
 /*
   Generated class for the ApiProvider provider.
@@ -18,22 +18,22 @@ export class ApiProvider {
 
   }
 
-  addFriend(user1:any,user2:any) {
+  addFriend(user1: any, user2: any) {
     let body = JSON.stringify({ "username1": user1, "username2": user2 });
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post(this.apiconstants.URL_BASE_API + "/friendships/", body, {headers: headers});
+    return this.http.post(this.apiconstants.URL_BASE_API + "/friendships/", body, { headers: headers });
   }
 
-  getPendingFriends(user1:any){
-    return this.http.get(this.apiconstants.URL_BASE_API + "/friendships/getPendingFriendships?username="+user1)
+  getPendingFriends(user1: any) {
+    return this.http.get(this.apiconstants.URL_BASE_API + "/friendships/getPendingFriendships?username=" + user1)
       .map(res => res.json());
   }
 
-  acceptFriendship(username1: any,username2:any) {
+  acceptFriendship(username1: any, username2: any) {
     return this.http.put(this.apiconstants.URL_BASE_API +
-      "/friendships?username1="+username1+"&username2="+username2,
+      "/friendships?username1=" + username1 + "&username2=" + username2,
       null);
   }
 
@@ -66,7 +66,7 @@ export class ApiProvider {
     headers.append('Content-Type', 'application/json');
 
     return this.http.put(this.apiconstants.URL_BASE_API + "/users",
-      body, {headers: headers});
+      body, { headers: headers });
 
   }
 
@@ -84,7 +84,7 @@ export class ApiProvider {
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(this.apiconstants.URL_BASE_API + "/users",
-      body, {headers: headers});
+      body, { headers: headers });
 
   }
 
@@ -92,12 +92,12 @@ export class ApiProvider {
     this.http.get("https://restcountries.eu/rest/v2/region/" + continent)
       .map(res => res.json()).subscribe((res: any) => {
       let randomIndex = Math.floor(Math.random() * res.length);
-      let country: any = res[randomIndex];
+      let country: any = res[ randomIndex ];
 
       this.http.get("https://maps.googleapis.com/maps/api/geocode/json?address="
         + country.capital + "," + country.name + "&key=" + this.apiconstants.GOOGLE_API_KEY).map(res => res.json()).subscribe(res => {
-        let lat = res.results[0].geometry.location.lat;
-        let lng = res.results[0].geometry.location.lng;
+        let lat = res.results[ 0 ].geometry.location.lat;
+        let lng = res.results[ 0 ].geometry.location.lng;
 
 
         this.http.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
@@ -110,7 +110,7 @@ export class ApiProvider {
             let sorted = filtered.sort(function () {
               return 0.5 - Math.random()
             });
-            callback({lat: lat, lng: lng}, sorted.slice(0, Math.min(sorted.length, 9)));
+            callback({ lat: lat, lng: lng }, sorted.slice(0, Math.min(sorted.length, 9)));
           } else {
             this.getMonuments(continent, callback);
           }
@@ -124,7 +124,7 @@ export class ApiProvider {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post(this.apiconstants.URL_BASE_API + "/games/" + username, body, {headers: headers});
+    return this.http.post(this.apiconstants.URL_BASE_API + "/games/" + username, body, { headers: headers });
   }
 
 }

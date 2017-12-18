@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {App, IonicPage, ViewController} from 'ionic-angular';
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
-import {Storage} from "@ionic/storage";
+import { App, IonicPage, ViewController } from 'ionic-angular';
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
+import { Storage } from "@ionic/storage";
 
 
 /**
@@ -32,8 +32,7 @@ export class PopoverPage {
   constructor(private app: App,
               public viewCtrl: ViewController,
               public storage: Storage,
-              public constants: ApiConstantsProvider
-  ) {
+              public constants: ApiConstantsProvider) {
 
   }
 
@@ -43,7 +42,7 @@ export class PopoverPage {
     this.app.getRootNav().setRoot('LoginPage');
   }
 
-  openPage(){
+  openPage() {
     this.close();
     this.app.getRootNav().push('ProfilePage');
 

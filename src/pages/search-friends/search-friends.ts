@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
-import {ApiProvider} from "../../providers/api/api";
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
-import {Storage} from "@ionic/storage";
+import { Component } from '@angular/core';
+import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from "../../providers/api/api";
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
+import { Storage } from "@ionic/storage";
 
 
 /**
@@ -22,7 +22,7 @@ export class SearchFriendsPage {
   users: any;
   usersByCountry: any;
   usersFilter: string = "filterByUsername";
-  loading:any;
+  loading: any;
 
 
   constructor(public navCtrl: NavController,
@@ -55,7 +55,7 @@ export class SearchFriendsPage {
             let alert = this.alertCtrl.create({
               title: 'Operación completada',
               subTitle: 'Se ha enviado petición de amistad.',
-              buttons: ['Aceptar']
+              buttons: [ 'Aceptar' ]
             });
 
             alert.present();
@@ -67,7 +67,7 @@ export class SearchFriendsPage {
             let alert = this.alertCtrl.create({
               title: 'Operación erronea.',
               subTitle: JSON.parse(error._body).message,
-              buttons: ['Aceptar']
+              buttons: [ 'Aceptar' ]
             });
 
             alert.present();

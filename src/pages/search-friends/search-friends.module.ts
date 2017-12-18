@@ -10,4 +10,5 @@ import { SearchFriendsPage } from './search-friends';
     IonicPageModule.forChild(SearchFriendsPage),
   ],
 })
-export class SearchFriendsPageModule {}
+export class SearchFriendsPageModule {
+}

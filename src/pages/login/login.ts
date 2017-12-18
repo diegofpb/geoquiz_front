@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {AlertController, App, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {FormBuilder, Validators} from "@angular/forms";
-import {Storage} from "@ionic/storage";
-import {ApiProvider} from "../../providers/api/api";
-import {HomePage} from "../home/home";
-import {ApiConstantsProvider} from "../../providers/api-constants/api-constants";
+import { Component } from '@angular/core';
+import { AlertController, App, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, Validators } from "@angular/forms";
+import { Storage } from "@ionic/storage";
+import { ApiProvider } from "../../providers/api/api";
+import { HomePage } from "../home/home";
+import { ApiConstantsProvider } from "../../providers/api-constants/api-constants";
 
 /**
  * Generated class for the LoginPage page.
@@ -34,8 +34,8 @@ export class LoginPage {
 
 
     this.registerCredentials = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: [ '', Validators.required ],
+      password: [ '', Validators.required ],
     })
 
   }
